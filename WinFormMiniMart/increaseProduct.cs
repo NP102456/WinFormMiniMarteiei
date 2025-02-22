@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace WinFormMiniMart
 {
-    public partial class Form4 : Form
+    public partial class increaseProduct : Form
     {
-        public Form4()
+        public increaseProduct()
         {
             InitializeComponent();
         }
@@ -104,25 +104,44 @@ namespace WinFormMiniMart
             this.Close();
         }
 
-        private void InsertProduct()
-        {
-            if (string.IsNullOrEmpty(txtProductName.Text))
+       
+        
+            private void InsertProduct()
             {
-                MessageBox.Show("ชื่อสินค้าต้องไม่ว่าง");
-                return;
+                if (string.IsNullOrEmpty(txtProductName.Text))
+                {
+                    MessageBox.Show("ชื่อสินค้าต้องไม่ว่าง");
+                    return;
+                }
+
+                // ตรวจสอบว่ามี ProductID อยู่แล้วหรือไม่
+                string checkSql = "SELECT COUNT(*) FROM Products WHERE ProductID = @ProductID";
+                SqlCommand checkCmd = new SqlCommand(checkSql, conn);
+                checkCmd.Parameters.AddWithValue("@ProductID", txtProductID.Text.Trim());
+
+                int count = (int)checkCmd.ExecuteScalar();
+                if (count > 0)
+                {
+                    MessageBox.Show("รหัสสินค้านี้มีอยู่แล้วในระบบ กรุณาใช้รหัสสินค้าใหม่!", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // ถ้าไม่มี ProductID ซ้ำ ให้ทำการ Insert
+                string sql = "INSERT INTO Products (ProductID, ProductName, UnitPrice, UnitsInStock, CategoryID, Discontinued) " +
+                             "VALUES (@ProductID, @ProductName, @UnitPrice, @UnitsInStock, @CategoryID, @Discontinued)";
+                cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@ProductID", txtProductID.Text.Trim());
+                cmd.Parameters.AddWithValue("@ProductName", txtProductName.Text.Trim());
+                cmd.Parameters.AddWithValue("@UnitPrice", numUD_UnitPrice.Value);
+                cmd.Parameters.AddWithValue("@UnitsInStock", numUD_UnitsInStock.Value);
+                cmd.Parameters.AddWithValue("@CategoryID", cmbCategoryID.SelectedValue);
+                cmd.Parameters.AddWithValue("@Discontinued", cmbDiscontinued.SelectedIndex);
+
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("เพิ่มสินค้าเรียบร้อยแล้ว!", "สำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
             }
 
-            string sql = "Insert into Products (ProductID, ProductName, UnitPrice, UnitsInStock, CategoryID, Discontinued) values (@ProductID, @ProductName, @UnitPrice, @UnitsInStock, @CategoryID, @Discontinued)";
-            cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@ProductID", txtProductID.Text.Trim());
-            cmd.Parameters.AddWithValue("@ProductName", txtProductName.Text.Trim());
-            cmd.Parameters.AddWithValue("@UnitPrice", numUD_UnitPrice.Value);
-            cmd.Parameters.AddWithValue("@UnitsInStock", numUD_UnitsInStock.Value);
-            cmd.Parameters.AddWithValue("@CategoryID", cmbCategoryID.SelectedValue);  // ใช้ CategoryID ที่เลือกจาก ComboBox
-            cmd.Parameters.AddWithValue("@Discontinued", cmbDiscontinued.SelectedIndex);  // 0 = "พร้อมจำหน่าย", 1 = "เลิกจำหน่าย"
-            cmd.ExecuteNonQuery();
-            this.Close();
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {

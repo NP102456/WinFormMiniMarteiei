@@ -1,6 +1,6 @@
 ﻿namespace WinFormMiniMart
 {
-    partial class Form50
+    partial class Login
     {
         /// <summary>
         /// Required designer variable.
@@ -38,47 +38,51 @@
             // 
             // txtUserName
             // 
-            txtUserName.Location = new Point(160, 87);
+            txtUserName.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtUserName.Location = new Point(160, 24);
             txtUserName.Multiline = true;
             txtUserName.Name = "txtUserName";
-            txtUserName.Size = new Size(195, 40);
+            txtUserName.Size = new Size(607, 50);
             txtUserName.TabIndex = 0;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(160, 188);
+            txtPassword.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtPassword.Location = new Point(160, 111);
             txtPassword.Multiline = true;
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
-            txtPassword.Size = new Size(195, 35);
+            txtPassword.Size = new Size(607, 50);
             txtPassword.TabIndex = 1;
-            txtPassword.UseSystemPasswordChar = true;
+            txtPassword.TextChanged += txtPassword_TextChanged;
             // 
             // btnok
             // 
-            btnok.Location = new Point(242, 275);
+            btnok.BackColor = Color.FromArgb(0, 192, 0);
+            btnok.Location = new Point(334, 190);
             btnok.Name = "btnok";
             btnok.Size = new Size(94, 51);
             btnok.TabIndex = 2;
             btnok.Text = "ตกลง";
-            btnok.UseVisualStyleBackColor = true;
+            btnok.UseVisualStyleBackColor = false;
             btnok.Click += btnok_Click;
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(365, 275);
+            btnCancel.BackColor = Color.Red;
+            btnCancel.Location = new Point(434, 190);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(94, 51);
             btnCancel.TabIndex = 3;
             btnCancel.Text = "ยกเลิก";
-            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Showcard Gothic", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(29, 87);
+            label1.Location = new Point(29, 24);
             label1.Name = "label1";
             label1.Size = new Size(109, 50);
             label1.TabIndex = 4;
@@ -88,7 +92,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Showcard Gothic", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(29, 173);
+            label2.Location = new Point(12, 111);
             label2.Name = "label2";
             label2.Size = new Size(125, 50);
             label2.TabIndex = 5;

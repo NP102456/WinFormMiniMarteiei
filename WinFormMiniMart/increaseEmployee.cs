@@ -13,9 +13,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WinFormMiniMart
 {
-    public partial class Form2 : Form
+    public partial class increaseEmployee : Form
     {
-        public Form2()
+        public increaseEmployee()
         {
             InitializeComponent();
         }

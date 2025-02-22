@@ -65,23 +65,35 @@ namespace WinFormMiniMart
 
         private void insertCategory()
         {
-
-
-
             if (string.IsNullOrEmpty(txtCategoryName.Text))
             {
-                MessageBox.Show("ชื่อประเภทสินค้าต้องว่าง");
+                MessageBox.Show("ชื่อประเภทสินค้าต้องไม่ว่าง");
                 return;
             }
 
-            string sql = "Insert into Categories values (@categroyName,@Description)";
+            // ตรวจสอบว่า CategoryID ซ้ำหรือไม่
+            string checkSql = "SELECT COUNT(*) FROM Categories WHERE CategoryName = @categoryName";
+            SqlCommand checkCmd = new SqlCommand(checkSql, conn);
+            checkCmd.Parameters.AddWithValue("@categoryName", txtCategoryName.Text.Trim());
+
+            int count = (int)checkCmd.ExecuteScalar();
+            if (count > 0)
+            {
+                MessageBox.Show("ประเภทสินค้านี้มีอยู่แล้วในระบบ!", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // ถ้าไม่มีซ้ำ ให้ทำการ Insert
+            string sql = "INSERT INTO Categories (CategoryName, Description) VALUES (@categoryName, @Description)";
             cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@categroyName", txtCategoryName.Text.Trim());
+            cmd.Parameters.AddWithValue("@categoryName", txtCategoryName.Text.Trim());
             cmd.Parameters.AddWithValue("@Description", txtDescription.Text.Trim());
             cmd.ExecuteNonQuery();
-            this.Close();
 
+            MessageBox.Show("เพิ่มประเภทสินค้าเรียบร้อยแล้ว!", "สำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close();
         }
+
 
         SqlConnection conn;
         SqlDataAdapter da;

@@ -29,17 +29,16 @@
         private void InitializeComponent()
         {
             menuStrip1 = new MenuStrip();
-            จดการToolStripMenuItem = new ToolStripMenuItem();
             คำนวนสนคาToolStripMenuItem = new ToolStripMenuItem();
             ออกจากระบบToolStripMenuItem = new ToolStripMenuItem();
             menuStrip3 = new MenuStrip();
             จดการขอมลสนคาToolStripMenuItem = new ToolStripMenuItem();
             จดการขอมลToolStripMenuItem = new ToolStripMenuItem();
-            รายงานการขายToolStripMenuItem = new ToolStripMenuItem();
             ออกจากระบบToolStripMenuItem1 = new ToolStripMenuItem();
             menuStrip4 = new MenuStrip();
             เขาสระบบToolStripMenuItem = new ToolStripMenuItem();
             ปดโปรแกรมToolStripMenuItem = new ToolStripMenuItem();
+            ออกจากระบบToolStripMenuItem2 = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             menuStrip3.SuspendLayout();
             menuStrip4.SuspendLayout();
@@ -48,18 +47,12 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { จดการToolStripMenuItem, คำนวนสนคาToolStripMenuItem, ออกจากระบบToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { คำนวนสนคาToolStripMenuItem, ออกจากระบบToolStripMenuItem });
             menuStrip1.Location = new Point(0, 56);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 28);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
-            // 
-            // จดการToolStripMenuItem
-            // 
-            จดการToolStripMenuItem.Name = "จดการToolStripMenuItem";
-            จดการToolStripMenuItem.Size = new Size(115, 24);
-            จดการToolStripMenuItem.Text = "รายงานยอดขาย";
             // 
             // คำนวนสนคาToolStripMenuItem
             // 
@@ -78,7 +71,7 @@
             // menuStrip3
             // 
             menuStrip3.ImageScalingSize = new Size(20, 20);
-            menuStrip3.Items.AddRange(new ToolStripItem[] { จดการขอมลสนคาToolStripMenuItem, จดการขอมลToolStripMenuItem, รายงานการขายToolStripMenuItem, ออกจากระบบToolStripMenuItem1 });
+            menuStrip3.Items.AddRange(new ToolStripItem[] { จดการขอมลสนคาToolStripMenuItem, จดการขอมลToolStripMenuItem, ออกจากระบบToolStripMenuItem1, ออกจากระบบToolStripMenuItem2 });
             menuStrip3.Location = new Point(0, 28);
             menuStrip3.Name = "menuStrip3";
             menuStrip3.Size = new Size(800, 28);
@@ -90,6 +83,7 @@
             จดการขอมลสนคาToolStripMenuItem.Name = "จดการขอมลสนคาToolStripMenuItem";
             จดการขอมลสนคาToolStripMenuItem.Size = new Size(128, 24);
             จดการขอมลสนคาToolStripMenuItem.Text = "จัดการข้อมูลสินค้า";
+            จดการขอมลสนคาToolStripMenuItem.Click += จดการขอมลสนคาToolStripMenuItem_Click;
             // 
             // จดการขอมลToolStripMenuItem
             // 
@@ -98,17 +92,11 @@
             จดการขอมลToolStripMenuItem.Text = "จัดการข้อมูลพนักงาน";
             จดการขอมลToolStripMenuItem.Click += จดการขอมลToolStripMenuItem_Click;
             // 
-            // รายงานการขายToolStripMenuItem
-            // 
-            รายงานการขายToolStripMenuItem.Name = "รายงานการขายToolStripMenuItem";
-            รายงานการขายToolStripMenuItem.Size = new Size(112, 24);
-            รายงานการขายToolStripMenuItem.Text = "รายงานการขาย";
-            // 
             // ออกจากระบบToolStripMenuItem1
             // 
             ออกจากระบบToolStripMenuItem1.Name = "ออกจากระบบToolStripMenuItem1";
-            ออกจากระบบToolStripMenuItem1.Size = new Size(101, 24);
-            ออกจากระบบToolStripMenuItem1.Text = "ออกจากระบบ";
+            ออกจากระบบToolStripMenuItem1.Size = new Size(137, 24);
+            ออกจากระบบToolStripMenuItem1.Text = "จัดการประเภทสินค้า";
             ออกจากระบบToolStripMenuItem1.Click += ออกจากระบบToolStripMenuItem1_Click;
             // 
             // menuStrip4
@@ -134,6 +122,13 @@
             ปดโปรแกรมToolStripMenuItem.Size = new Size(90, 24);
             ปดโปรแกรมToolStripMenuItem.Text = "ปิดโปรแกรม";
             ปดโปรแกรมToolStripMenuItem.Click += ปดโปรแกรมToolStripMenuItem_Click;
+            // 
+            // ออกจากระบบToolStripMenuItem2
+            // 
+            ออกจากระบบToolStripMenuItem2.Name = "ออกจากระบบToolStripMenuItem2";
+            ออกจากระบบToolStripMenuItem2.Size = new Size(101, 24);
+            ออกจากระบบToolStripMenuItem2.Text = "ออกจากระบบ";
+            ออกจากระบบToolStripMenuItem2.Click += ออกจากระบบToolStripMenuItem2_Click;
             // 
             // main
             // 
@@ -161,7 +156,6 @@
         #endregion
 
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem จดการToolStripMenuItem;
         private ToolStripMenuItem คำนวนสนคาToolStripMenuItem;
         private MenuStrip menuStrip3;
         private MenuStrip menuStrip4;
@@ -170,7 +164,7 @@
         private ToolStripMenuItem เขาสระบบToolStripMenuItem;
         private ToolStripMenuItem ปดโปรแกรมToolStripMenuItem;
         private ToolStripMenuItem จดการขอมลToolStripMenuItem;
-        private ToolStripMenuItem รายงานการขายToolStripMenuItem;
         private ToolStripMenuItem ออกจากระบบToolStripMenuItem1;
+        private ToolStripMenuItem ออกจากระบบToolStripMenuItem2;
     }
 }

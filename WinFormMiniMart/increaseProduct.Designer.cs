@@ -1,6 +1,6 @@
 ﻿namespace WinFormMiniMart
 {
-    partial class Form4
+    partial class increaseProduct
     {
         /// <summary>
         /// Required designer variable.
@@ -103,22 +103,24 @@
             // 
             // button2
             // 
+            button2.BackColor = Color.FromArgb(0, 192, 0);
             button2.Location = new Point(395, 283);
             button2.Name = "button2";
             button2.Size = new Size(178, 61);
             button2.TabIndex = 11;
             button2.Text = "บันทึก";
-            button2.UseVisualStyleBackColor = true;
+            button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // button1
             // 
+            button1.BackColor = Color.Red;
             button1.Location = new Point(595, 283);
             button1.Name = "button1";
             button1.Size = new Size(178, 61);
             button1.TabIndex = 12;
             button1.Text = "ยกเลิก";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // cmbCategoryID
@@ -177,6 +179,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlDark;
             ClientSize = new Size(800, 357);
             Controls.Add(numUD_UnitsInStock);
             Controls.Add(numUD_UnitPrice);

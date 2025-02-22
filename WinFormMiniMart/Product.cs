@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace WinFormMiniMart
 {
-    public partial class Form3 : Form
+    public partial class Product : Form
     {
-        public Form3()
+        public Product()
         {
             InitializeComponent();
         }
@@ -73,7 +73,7 @@ namespace WinFormMiniMart
 
         private void dgvProducts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            Form4 f = new Form4();
+            increaseProduct f = new increaseProduct();
             f.status = "update";
             var dgv = dgvProducts.CurrentRow.Cells;
             f.ProductID = dgv["ProductID"].Value.ToString();  // ใช้ ProductID เป็น string
@@ -94,7 +94,7 @@ namespace WinFormMiniMart
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form4 f = new Form4();
+            increaseProduct f = new increaseProduct();
             f.status = "insert";
             f.ShowDialog();
             showdata();  // รีเฟรชข้อมูล

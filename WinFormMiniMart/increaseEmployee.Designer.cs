@@ -1,6 +1,6 @@
 ﻿namespace WinFormMiniMart
 {
-    partial class Form2
+    partial class increaseEmployee
     {
         /// <summary>
         /// Required designer variable.
@@ -115,22 +115,24 @@
             // 
             // button1
             // 
+            button1.BackColor = Color.Red;
             button1.Location = new Point(610, 373);
             button1.Name = "button1";
             button1.Size = new Size(178, 61);
             button1.TabIndex = 2;
             button1.Text = "ยกเลิก";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // button2
             // 
+            button2.BackColor = Color.FromArgb(0, 192, 0);
             button2.Location = new Point(410, 373);
             button2.Name = "button2";
             button2.Size = new Size(178, 61);
             button2.TabIndex = 2;
             button2.Text = "บันทึก";
-            button2.UseVisualStyleBackColor = true;
+            button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // label1
@@ -204,6 +206,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlDark;
             ClientSize = new Size(800, 450);
             Controls.Add(label4);
             Controls.Add(label3);

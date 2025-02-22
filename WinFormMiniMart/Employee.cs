@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace WinFormMiniMart
 {
-    public partial class Form1 : Form
+    public partial class Employee : Form
     {
-        public Form1()
+        public Employee()
         {
             InitializeComponent();
         }
@@ -58,7 +58,7 @@ namespace WinFormMiniMart
 
         private void dgvEmployees_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            Form2 f = new Form2();
+            increaseEmployee f = new increaseEmployee();
             f.status = "update";
             var dgv = dgvEmployees.CurrentRow.Cells;
             f.EmployeeID = Convert.ToInt16(dgv["EmployeeID"].Value);
@@ -80,7 +80,7 @@ namespace WinFormMiniMart
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form2 f = new Form2();
+            increaseEmployee f = new increaseEmployee();
             f.status = "insert";
             f.ShowDialog();
             showdata();

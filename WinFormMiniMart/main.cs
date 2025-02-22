@@ -32,14 +32,14 @@ namespace WinFormMiniMart
         }
         private void จดการToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Form1 frm = new Form1();
+            Employee frm = new Employee();
             //frm.MdiParent = this;
             frm.Show();
         }
 
         private void พนกงานToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form3 frm = new Form3();
+            Product frm = new Product();
             //frm.MdiParent = this;
             frm.Show();
         }
@@ -58,16 +58,17 @@ namespace WinFormMiniMart
             frm.Show();
         }
 
-       
+
 
         private void จดการขอมลToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Employee frm = new Employee();
+            frm.Show();
         }
 
         private void เขาสระบบToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form50 f = new Form50();
+            Login f = new Login();
             f.ShowDialog();
             if (f.employeeID == 0)
             {
@@ -100,17 +101,29 @@ namespace WinFormMiniMart
 
         private void ออกจากระบบToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+           frmCategories frmCategories = new frmCategories();
+            frmCategories.ShowDialog();
+        }
+
+        private void ออกจากระบบToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowHideMenu(true, false, false);
+        }
+
+        private void จดการขอมลสนคาToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Product frm = new Product();
+            frm.Show();
+        }
+
+        private void ออกจากระบบToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
             foreach (var child in this.MdiChildren)
             {
                 child.Close();
             }
             ShowHideMenu(true, false, false);
             this.Text = "ระบบMini Mart";
-        }
-
-        private void ออกจากระบบToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ShowHideMenu(true, false, false);
         }
     }
 }

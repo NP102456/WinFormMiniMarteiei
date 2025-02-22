@@ -1,4 +1,5 @@
 using Microsoft.Data.SqlClient;
+using Microsoft.IdentityModel.Tokens;
 using System.Data;
 
 namespace WinFormMiniMart
@@ -14,9 +15,9 @@ namespace WinFormMiniMart
 
         private void DgvCategories_CellMouseUp(object? sender, DataGridViewCellMouseEventArgs e)
         {
-            txtCategoryID.Text = dgvCategories.CurrentRow.Cells["CategoryID"].Value.ToString();
-            txtCategoryName.Text = dgvCategories.CurrentRow.Cells["CategoryName"].Value.ToString();
-            txtDescription.Text = dgvCategories.CurrentRow.Cells["Description"].Value.ToString();
+             dgvCategories.CurrentRow.Cells["CategoryID"].Value.ToString();
+            dgvCategories.CurrentRow.Cells["CategoryName"].Value.ToString();
+            dgvCategories.CurrentRow.Cells["Description"].Value.ToString();
         }
 
         SqlConnection conn;
@@ -27,7 +28,7 @@ namespace WinFormMiniMart
         {
             conn = connDB.ConnectMinimart();
             showdata();
-            txtCategoryID.Enabled = false;
+            
         }
 
         private void showdata()
@@ -40,102 +41,49 @@ namespace WinFormMiniMart
             dgvCategories.DataSource = dataSet.Tables[0];
         }
 
-        private void btnClearForm_Click(object sender, EventArgs e)
-        {
-            txtCategoryID.Text = string.Empty;
-            txtCategoryName.Text = string.Empty;
-            txtDescription.Text = string.Empty;
-            txtCategoryName.Focus();
-            txtCategoryID.Enabled = false;
-        }
+       
 
         private void btninsert_Click(object sender, EventArgs e)
         {
+            frm_main addCategoryForm = new frm_main();
+            addCategoryForm.status = "insert"; // กำหนดให้เป็นโหมดเพิ่ม
+            addCategoryForm.ShowDialog(); // เปิดฟอร์มใหม่แบบ Modal
+            showdata(); // โหลดข้อมูลใหม่หลังจากปิดฟอร์ม
 
-            if (string.IsNullOrEmpty(txtCategoryName.Text))
-            {
-                MessageBox.Show("ชื่อประเภทสินค้าต้องว่าง");
-                return;
-            }
-
-            string sql = "Insert into Categories values (@categroyName,@Description)";
-            cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@categroyName", txtCategoryName.Text.Trim());
-            cmd.Parameters.AddWithValue("@Description", txtDescription.Text.Trim());
-
-            if (cmd.ExecuteNonQuery() > 0)
-            {
-                showdata();
-                btnClearForm.PerformClick();
-            }
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtCategoryID.Text))
-            {
-                MessageBox.Show("กรุณาเลือกข้อมูลก่อน");
-                return;
-            }
-            if (string.IsNullOrEmpty(txtCategoryName.Text))
-            {
-                MessageBox.Show("ชื่อประเภทสินค้าต้องว่าง");
-                return;
-            }
-
-            string sql = "Update Categories set CategoryName = @categroyName, Description = @Description where CategoryID = @categoryID";
-            cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@categoryID", txtCategoryID.Text.Trim());
-            cmd.Parameters.AddWithValue("@categroyName", txtCategoryName.Text.Trim());
-            cmd.Parameters.AddWithValue("@Description", txtDescription.Text.Trim());
-
-
-            if (cmd.ExecuteNonQuery() > 0)
-            {
-                showdata();
-                btnClearForm.PerformClick();
-            }
-        }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtCategoryID.Text))
+            if (dgvCategories.SelectedRows.Count == 0)
             {
-                MessageBox.Show("กรุณาเลือกข้อมูลก่อน");
-                return;
-            }
-            if (MessageBox.Show("ต้องการลบข้อมูลนี้หรือไม่", "โปรดยืนยัน", MessageBoxButtons.YesNo) == DialogResult.No)
-            {
+                MessageBox.Show("กรุณาเลือกแถวที่ต้องการลบ", "แจ้งเตือน", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            string sql = "delete from Categories where CategoryID = @categoryID";
-            cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@categoryID", txtCategoryID.Text.Trim());
-            try
+            DialogResult result = MessageBox.Show("คุณแน่ใจหรือไม่ว่าต้องการลบข้อมูลนี้?", "ยืนยันการลบ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No) return;
+
+            foreach (DataGridViewRow row in dgvCategories.SelectedRows)
             {
-                if (cmd.ExecuteNonQuery() > 0)
+                string categoryID = row.Cells["CategoryID"].Value.ToString();
+                string sql = "DELETE FROM Categories WHERE CategoryID = @categoryID";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    showdata();
-                    btnClearForm.PerformClick();
+                    cmd.Parameters.AddWithValue("@categoryID", categoryID);
+                    cmd.ExecuteNonQuery();
                 }
             }
-            catch (Exception ex)
-            {
 
-                MessageBox.Show("เกิดข้อผิดพลาด :" + Environment.NewLine + ex.Message, "ไม่สามารถลบข้อมูลได้");
-            }
+            MessageBox.Show("ลบข้อมูลเรียบร้อยแล้ว!", "สำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            showdata(); // โหลดข้อมูลใหม่
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            frm_main f = new frm_main();
-            f.status = "insert";
-            f.ShowDialog();
-            showdata();
-        }
 
-       
+
+
+
 
         private void dgvCategories_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -147,6 +95,16 @@ namespace WinFormMiniMart
             f.description = dgv["description"].Value.ToString();
             f.ShowDialog();
             showdata();
+        }
+
+        private void frmCategories_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvCategories_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

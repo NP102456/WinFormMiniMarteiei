@@ -1,6 +1,6 @@
 ﻿namespace WinFormMiniMart
 {
-    partial class Form1
+    partial class Employee
     {
         /// <summary>
         /// Required designer variable.
@@ -38,33 +38,39 @@
             // 
             // dgvEmployees
             // 
+            dgvEmployees.AllowUserToAddRows = false;
+            dgvEmployees.AllowUserToDeleteRows = false;
             dgvEmployees.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvEmployees.Location = new Point(12, 94);
             dgvEmployees.Name = "dgvEmployees";
+            dgvEmployees.ReadOnly = true;
             dgvEmployees.RowHeadersWidth = 51;
-            dgvEmployees.Size = new Size(776, 340);
+            dgvEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvEmployees.Size = new Size(609, 340);
             dgvEmployees.TabIndex = 0;
             dgvEmployees.CellDoubleClick += dgvEmployees_CellDoubleClick;
             dgvEmployees.CellMouseUp += dgvEmployees_CellMouseUp;
             // 
             // button1
             // 
-            button1.Location = new Point(436, 30);
+            button1.BackColor = Color.Red;
+            button1.Location = new Point(627, 26);
             button1.Name = "button1";
-            button1.Size = new Size(83, 55);
+            button1.Size = new Size(125, 75);
             button1.TabIndex = 1;
             button1.Text = "ล้าง";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // button2
             // 
-            button2.Location = new Point(525, 31);
+            button2.BackColor = Color.FromArgb(0, 192, 0);
+            button2.Location = new Point(627, 123);
             button2.Name = "button2";
-            button2.Size = new Size(125, 52);
+            button2.Size = new Size(125, 79);
             button2.TabIndex = 1;
             button2.Text = "เพิ่มข้อมูล";
-            button2.UseVisualStyleBackColor = true;
+            button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // txtSearch
@@ -73,15 +79,15 @@
             txtSearch.Location = new Point(36, 26);
             txtSearch.Multiline = true;
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(394, 55);
+            txtSearch.Size = new Size(585, 55);
             txtSearch.TabIndex = 2;
             txtSearch.TextChanged += textBox1_TextChanged;
             // 
             // button3
             // 
-            button3.Location = new Point(656, 31);
+            button3.Location = new Point(627, 222);
             button3.Name = "button3";
-            button3.Size = new Size(125, 52);
+            button3.Size = new Size(125, 81);
             button3.TabIndex = 1;
             button3.Text = "ลบข้อมูล";
             button3.UseVisualStyleBackColor = true;
@@ -91,6 +97,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Cornsilk;
             ClientSize = new Size(800, 450);
             Controls.Add(txtSearch);
             Controls.Add(button3);

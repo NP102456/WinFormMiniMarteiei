@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace WinFormMiniMart
 {
-    public partial class Form50 : Form
+    public partial class Login : Form
     {
-        public Form50()
+        public Login()
         {
             InitializeComponent();
         }
@@ -27,7 +27,7 @@ namespace WinFormMiniMart
         SqlConnection conn;
         SqlDataAdapter da;
         SqlCommand cmd;
-     
+
 
         private void Form50_Load(object sender, EventArgs e)
         {
@@ -72,6 +72,10 @@ namespace WinFormMiniMart
             this.Close();
         }
 
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

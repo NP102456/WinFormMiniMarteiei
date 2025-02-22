@@ -1,6 +1,6 @@
 ﻿namespace WinFormMiniMart
 {
-    partial class Form3
+    partial class Product
     {
         /// <summary>
         /// Required designer variable.
@@ -38,51 +38,59 @@
             // 
             // txtSearch
             // 
+            txtSearch.BackColor = SystemColors.Window;
             txtSearch.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSearch.Location = new Point(36, 21);
             txtSearch.Multiline = true;
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(394, 55);
+            txtSearch.Size = new Size(663, 55);
             txtSearch.TabIndex = 7;
             txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // button3
             // 
-            button3.Location = new Point(656, 26);
+            button3.BackColor = Color.Red;
+            button3.Location = new Point(413, 371);
             button3.Name = "button3";
-            button3.Size = new Size(125, 52);
+            button3.Size = new Size(125, 57);
             button3.TabIndex = 4;
             button3.Text = "ลบข้อมูล";
-            button3.UseVisualStyleBackColor = true;
+            button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
             // button2
             // 
-            button2.Location = new Point(525, 26);
+            button2.BackColor = Color.FromArgb(0, 192, 0);
+            button2.Location = new Point(282, 371);
             button2.Name = "button2";
-            button2.Size = new Size(125, 52);
+            button2.Size = new Size(125, 57);
             button2.TabIndex = 5;
             button2.Text = "เพิ่มข้อมูล";
-            button2.UseVisualStyleBackColor = true;
+            button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(436, 25);
+            button1.BackColor = SystemColors.ControlDark;
+            button1.Location = new Point(705, 21);
             button1.Name = "button1";
             button1.Size = new Size(83, 55);
             button1.TabIndex = 6;
             button1.Text = "ล้าง";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // dgvProducts
             // 
+            dgvProducts.AllowUserToAddRows = false;
+            dgvProducts.AllowUserToDeleteRows = false;
             dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProducts.Location = new Point(12, 86);
             dgvProducts.Name = "dgvProducts";
+            dgvProducts.ReadOnly = true;
             dgvProducts.RowHeadersWidth = 51;
-            dgvProducts.Size = new Size(776, 340);
+            dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvProducts.Size = new Size(776, 268);
             dgvProducts.TabIndex = 3;
             dgvProducts.CellDoubleClick += dgvProducts_CellDoubleClick;
             // 
